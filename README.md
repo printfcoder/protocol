@@ -1,6 +1,6 @@
 # The Micro Protocol
 
-This repository provides a home for the development and specification for the **micro communication protocol**. 
+This repository provides a home for the development and specification for the **micro communication protocol** (mucp). 
 
 ## Overview
 
