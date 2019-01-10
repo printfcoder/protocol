@@ -21,7 +21,7 @@ should scan for a starting json delimiter `{` to know whether to decode to json.
 
 ### Request/Response
 
-The request/response are identical in format. The request includes headers id, service and method. The response echoes these 
+The request/response are identical in format. The request includes headers id, service and endpoint. The response echoes these 
 back the same headers but includes the response body.
 
 An example request.
@@ -31,7 +31,7 @@ An example request.
 	Header: {
 		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
 		"X-Micro-Service": "greeter",
-		"X-Micro-Method": "Say.Hello",
+		"X-Micro-Endpoint": "Say.Hello",
 		"Content-Type": "application/protobuf",
 	}
 	Body: []byte(...)
