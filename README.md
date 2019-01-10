@@ -35,3 +35,26 @@ An example request.
 }
 ```
 
+## Publication
+
+Messages can be published via the protocol. These are sent to a topic which may have multiple subscribers. The sender 
+does not need to know where the subscribers live or if there are any at the time. Ideally the proxy or accepter of 
+the message should save the message to an inbox for a period of time if no subscribers are present so they 
+can be retrieved later.
+
+An example message.
+
+```
+{
+	Header: {
+		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"X-Micro-Topic": "events",
+		"Content-Type": "application/protobuf",
+	}
+	Body: []byte(...)
+}
+```
+
+### Optional
+
+Currently we are looking at optional extra headers such a `X-Micro-Protocol` to specify the protocol for the endpoint. 
