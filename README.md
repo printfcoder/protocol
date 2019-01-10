@@ -1,4 +1,4 @@
-# The Micro Protocol
+# Micro Communication Protocol (MUCP)
 
 This repository provides a home for the development and specification for the **micro communication protocol** (mucp). 
 
