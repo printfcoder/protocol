@@ -58,8 +58,23 @@ An example message.
 }
 ```
 
+In the event you want to subscribe to a topic you must specify a queue.
+
+```
+{
+        Header: {
+                "X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+                "X-Micro-Topic": "events",
+                "X-Micro-Queue": "customer",
+                "Content-Type": "application/protobuf",
+        }
+}
+```
+
 ### Optional
 
-- We are looking at optional extra headers such a `X-Micro-Protocol` to specify the protocol for the endpoint. 
-- We are also looking into the header `X-Micro-Stream` to segregate streams on the same connection.
-- The header `X-Micro-Channel` or `X-Micro-Queue` to specify a specific queue to segregate by.
+We are looking at optional extra headers for routing
+
+- `X-Micro-Protocol` to specify the protocol for the endpoint. 
+- `X-Micro-Stream` to segregate streams on the same connection.
+- `X-Micro-Channel` or `X-Micro-Queue` to specify a specific queue to segregate by.
