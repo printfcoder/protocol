@@ -38,6 +38,19 @@ An example request.
 }
 ```
 
+In the event of an error we return it as a header (may change to body).
+
+```
+{
+	Header: {
+		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"X-Micro-Service": "greeter",
+		"X-Micro-Endpoint": "Say.Hello",
+		"X-Micro-Error": {"id":"greeter.Say.Hello","code":500,"detail":"Failed greeting","status":"Internal Server Error"},
+	}
+}
+```
+
 ## Publication
 
 Messages can be published asynchronously via the protocol. These are sent to a topic which may have multiple subscribers. The sender 
