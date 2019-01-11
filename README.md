@@ -8,7 +8,7 @@ The micro communication protocol is a simple design specfication for how micro s
 Our intention is to define an open protocol for service to service communication on top of any system. This also provides us the ability 
 to simplify the creation of clients and servers which accept micro based requests. 
 
-Ideally implementations of the client should be proxied through a http proxy such as the micro proxy to simplify client creation.
+Ideally client implementations should be proxied through the micro proxy to standardise creation.
 
 ## Protocol
 
