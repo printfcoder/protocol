@@ -66,7 +66,6 @@ In the event you want to subscribe to a topic you must specify a queue.
                 "X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
                 "X-Micro-Topic": "events",
                 "X-Micro-Queue": "customer",
-                "Content-Type": "application/protobuf",
         }
 }
 ```
