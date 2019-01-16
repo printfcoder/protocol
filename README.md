@@ -4,11 +4,11 @@ This repository provides a home for the development and specification for the **
 
 ## Overview
 
-The micro communication protocol is a simple design specfication for how micro sends and receives messages over any transport or broker. 
+The micro communication protocol is a simple design specfication for how micro services sends and receives messages over any transport. 
 Our intention is to define an open protocol for service to service communication on top of any system. This also provides us the ability 
 to simplify the creation of clients and servers which accept micro based requests. 
 
-Ideally client implementations should be proxied through the micro proxy to standardise creation.
+Ideally client should be implemented using the micro proxy http interface to standardise creation.
 
 ## Protocol
 
