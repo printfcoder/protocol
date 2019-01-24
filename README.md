@@ -29,9 +29,9 @@ An example request.
 ```
 {
 	Header: {
-		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
-		"X-Micro-Service": "greeter",
-		"X-Micro-Endpoint": "Say.Hello",
+		"Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"Micro-Service": "greeter",
+		"Micro-Endpoint": "Say.Hello",
 		"Content-Type": "application/protobuf",
 	}
 	Body: []byte(...)
@@ -43,10 +43,10 @@ In the event of an error we return it as a header (may change to body).
 ```
 {
 	Header: {
-		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
-		"X-Micro-Service": "greeter",
-		"X-Micro-Endpoint": "Say.Hello",
-		"X-Micro-Error": {"id":"greeter.Say.Hello","code":500,"detail":"Failed greeting","status":"Internal Server Error"},
+		"Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"Micro-Service": "greeter",
+		"Micro-Endpoint": "Say.Hello",
+		"Micro-Error": {"id":"greeter.Say.Hello","code":500,"detail":"Failed greeting","status":"Internal Server Error"},
 	}
 }
 ```
@@ -63,8 +63,8 @@ An example message.
 ```
 {
 	Header: {
-		"X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
-		"X-Micro-Topic": "events",
+		"Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"Micro-Topic": "events",
 		"Content-Type": "application/protobuf",
 	}
 	Body: []byte(...)
@@ -76,9 +76,9 @@ In the event you want to subscribe to a topic you must specify a queue.
 ```
 {
         Header: {
-                "X-Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
-                "X-Micro-Topic": "events",
-                "X-Micro-Queue": "customer",
+                "Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+                "Micro-Topic": "events",
+                "Micro-Queue": "customer",
         }
 }
 ```
@@ -87,6 +87,6 @@ In the event you want to subscribe to a topic you must specify a queue.
 
 We are looking at optional extra headers for routing
 
-- `X-Micro-Protocol` to specify the protocol for the endpoint. 
-- `X-Micro-Stream` to segregate streams on the same connection.
-- `X-Micro-Channel` or `X-Micro-Queue` to specify a specific queue to segregate by.
+- `Micro-Protocol` to specify the protocol for the endpoint. 
+- `Micro-Stream` to segregate streams on the same connection.
+- `Micro-Channel` or `Micro-Queue` to specify a specific queue to segregate by.
