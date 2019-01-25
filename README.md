@@ -10,19 +10,26 @@ to simplify the creation of clients and servers which accept micro based request
 
 Ideally client should be implemented using the micro proxy http interface to standardise creation.
 
+- [Protocol](#protocol)
+
 ## Protocol
 
-The protocol is incredibly simple. We define a set of headers and an encoded message body for bidirection request/response streaming and 
-asynchronous messaging.
+The protocol is a very simple transport agnostic set of headers and an encoded message body. The protocol supports request/response, 
+bidirectional streaming and asynchronous message broadcasting. Where the transport or broker accepts headers (such as http) the message headers 
+will be encoded in the transport headers. Otherwise the entire header and message will be encoded in an envelope. Our preference is to use protobuf 
+but the protocol should scan for a starting json delimiter `{` to know whether to decode to json.
 
-Where the transport or broker accepts headers (such as http) the headers will be encoded in its headers. Otherwise 
-the entire header and message will be encoded in an envelope. Our preference is to use protobuf but the protocol 
-should scan for a starting json delimiter `{` to know whether to decode to json.
+The protocol covers 3 forms of communication: 
 
-### Request/Response
+- [Request](#request) - Sending a request and synchronously receiving a response
+- [Stream](#stream) - Maintaining an open connection over which messages are passed back and forth
+- [Broadcast](#broadcast) - Asynchronously broadcast events to topics with multiple interested parties
 
-The request/response are identical in format. The request includes headers id, service and endpoint. The response echoes these 
-back the same headers but includes the response body.
+### Request
+
+Request/Response communication allows a single request to be sent and a response to be received. The request and response 
+are of identical format to correlate one to one mapping. A request should be passed with a unique id, name of the service, 
+the endpoint being called and the content-type. 
 
 An example request.
 
@@ -38,7 +45,7 @@ An example request.
 }
 ```
 
-In the event of an error we return it as a header (may change to body).
+In the event of an error we return it as a header. This may also be returned in the body.
 
 ```
 {
@@ -51,14 +58,32 @@ In the event of an error we return it as a header (may change to body).
 }
 ```
 
-## Publication
+### Stream
 
-Messages can be published asynchronously via the protocol. These are sent to a topic which may have multiple subscribers. The sender 
-does not need to know where the subscribers live or if there are any at the time. Ideally the proxy or accepter of 
-the message should save the message to an inbox for a period of time if no subscribers are present so they 
-can be retrieved later.
+A stream is a long live connection over which messages are passed back and forth. This could be request response or streaming updates 
+such as gps location from a client to the server. A stream uses identical request/response semantics except it also includes a 
+stream id.
 
-An example message.
+```
+{
+        Header: {
+                "Micro-Id": "d02d5da0-14dc-11e9-ab14-d663bd873d93",
+		"Micro-Stream": "user.1"
+                "Micro-Service": "geolocation",
+                "Micro-Endpoint": "Gps.Update",
+                "Content-Type": "application/protobuf",
+        }
+        Body: []byte(...)
+}
+```
+
+### Broadcast
+
+Messages can be broadcast asynchronously to a topic. This requires no knowledge of subscribers or interested parties a head of time. 
+It provides a method for notification of events without requiring a response. In the event no subscribers exist, the messages 
+can be saved in an inbox until subscribers are present to retrieve the messages at a later time.
+
+An example broadcast message.
 
 ```
 {
