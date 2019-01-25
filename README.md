@@ -11,6 +11,8 @@ to simplify the creation of clients and servers which accept micro based request
 Ideally client should be implemented using the micro proxy http interface to standardise creation.
 
 - [Protocol](#protocol)
+- [Discovery](#discovery)
+- [In Progress](#in-progress)
 
 ## Protocol
 
@@ -108,7 +110,16 @@ In the event you want to subscribe to a topic you must specify a queue.
 }
 ```
 
-### Optional
+## Discovery
+
+Service and topic discovery is a non concern for the time being. Internally our implementation of micro supports multicast DNS, gossip and consul. We believe 
+in closed networks users should have the choice to use whatever is a preference for their architectures. [Go Micro](https://github.com/micro/go-micro) is 
+the location for our default implementation, with [Go Plugins](https://github.com/micro/go-plugins) serving as a place for additional plugins.
+
+In regard to discovery across the public internet. We believe networks should be served via DNS SRV records. It is yet to be decided whether to segregate 
+these by service and topic.
+
+## In Progress
 
 We are looking at optional extra headers for routing
 
