@@ -10,6 +10,8 @@ to simplify the creation of clients and servers which accept micro based request
 
 Ideally client should be implemented using the micro proxy http interface to standardise creation.
 
+## Contents
+
 - [Protocol](#protocol)
 - [Discovery](#discovery)
 - [In Progress](#in-progress)
