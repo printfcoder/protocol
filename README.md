@@ -27,7 +27,7 @@ The protocol covers 3 forms of communication:
 
 - [Request](#request) - Sending a request and synchronously receiving a response
 - [Stream](#stream) - Maintaining an open connection over which messages are passed back and forth
-- [Broadcast](#broadcast) - Asynchronously broadcast events to topics with multiple interested parties
+- [Publish](#publish) - Asynchronously broadcast events to topics with multiple interested parties
 
 ### Request
 
@@ -81,7 +81,7 @@ stream id.
 }
 ```
 
-### Broadcast
+### Publish
 
 Messages can be broadcast asynchronously to a topic. This requires no knowledge of subscribers or interested parties a head of time. 
 It provides a method for notification of events without requiring a response. In the event no subscribers exist, the messages 
